@@ -1,15 +1,16 @@
 <?php
+// Incluir archivo de configuración
+require_once __DIR__ . '/config.php';
 
 function conectarBD(){
-  /*DATOS A CONFIGURAR. PROPIOS DE LA BASE DE DATOS A UTILIZAR*/
-  $db_host="localhost";//localhost (si es local), NUMERO_IP O NOMBRE_SERVIDOR_PUBLICO (si es remoto)
-  $db_user="jconde";//USUARIO DE LA BD
-  $db_password="julian2023!";//CLAVE DEL USUARIO evelios*131
-  $db_name="contactos";//NOMBRE DE LA BD
-  
+  // Usar constantes del archivo de configuración
+  $db_host = DB_HOST;
+  $db_user = DB_USER;
+  $db_password = DB_PASSWORD;
+  $db_name = DB_NAME;
 
   //Se conecta a la base de datos
-  $link = mysqli_connect($db_host, $db_user, $db_password,$db_name);
+  $link = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
   /* comprobar la conexión */
   if (mysqli_connect_errno()) {

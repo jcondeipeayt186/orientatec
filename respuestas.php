@@ -1,147 +1,198 @@
 <?php
-include 'librerias/funcionesHTML.php';//digo que puedo usar lo que se encuentre en ese archivo
-?>
+include 'librerias/funcionesHTML.php';
+include 'librerias/basededatos.php';//digo que puedo usar lo que se encuentre en ese archivo
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">    
-
-<?php linksBootstrap() ?> <!-- hago uso de la función que está definida en funcionesHTML.php -->
-
-    <title>Prueba de uso de funciones</title>
-
-
- <!-- CDN oficial de Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    
-    canvas {
-      max-width: 400px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-  </style>
-
-
-</head>
-
-
-<body>
-<?php if (isset($_POST["usuario"])){ //isset controla si existe el parametro utilizado con GET o POST
+// Procesar respuestas del formulario
 
     $contadorAgro= 0;
     $contadorInfo= 0;
     $contadorEco= 0;
 
-    $usuario = $_POST["usuario"];
-    
-    $rp1 = $_POST["pregunta1"];
-    $rp2 = $_POST["pregunta2"];
-    $rp3 = $_POST["pregunta3"];
+    $usuario = isset($_POST["Usuario"]) ? $_POST["Usuario"] : "";
 
- }
 
-    if($rp1 == "agro"){
-        $contadorAgro++;
-    }elseif($rp1 == "info"){
-        $contadorInfo++;
-    }elseif($rp1 == "eco"){
-        $contadorEco++;
-    }
-
-    if($rp2 == "agro"){
-        $contadorAgro++;
-    }elseif($rp2 == "info"){
-        $contadorInfo++;
-    }elseif($rp2 == "eco"){
-        $contadorEco++;
-    }
-
-    if($rp3 == "agro"){
-        $contadorAgro++;
-    }elseif($rp3 == "info"){
-        $contadorInfo++;
-    }elseif($rp3 == "eco"){
-        $contadorEco++;
+    $respuestas = array();
+    for ($i = 1; $i <= 13; $i++) {
+        $clave = "pregunta".$i;
+        $respuestas[$i] = isset($_POST[$clave]) ? $_POST[$clave] : "";
     }
     
+    
+    // Contar respuestas por categoría
+    foreach ($respuestas as $respuesta) {
+        
+        if ($respuesta === "agro") {
+            $contadorAgro++;
+        } elseif ($respuesta === "info") {
+            $contadorInfo++;
+        } elseif ($respuesta === "eco") {
+            $contadorEco++;
+        }
+    }
 
- ?>
 
+//insertar en BD Orientatec
+$link=conectarBD();
+foreach ($respuestas as $respuesta) {
+        $sqlResp = "INSERT INTO `respuestas` ( `opcion_elegida`, `usuario`) VALUES ('".mysqli_real_escape_string($link, $respuesta)."', '".mysqli_real_escape_string($link, $usuario)."')";
+        $okResp = mysqli_query($link, $sqlResp);
 
-<div class="container-fluid">
-<h1>Muchas Gracias <?php echo $usuario?>!!! </h1>
+/*¿Cómo funciona mysqli_real_escape_string?
+Qué hace: Escapa caracteres especiales en una cadena para que sea segura al construir consultas SQL. Previene inyecciones SQL cuando concatenas valores en el SQL.
+Cómo funciona: Inserta barras invertidas delante de caracteres peligrosos según el conjunto de caracteres actual de la conexión MySQL (comillas simples/dobles, barra invertida, NULL, etc.).
+Requisito: Necesita una conexión MySQL activa y válida, y que el charset esté configurado correctamente en esa conexión*/
+        
+        if(!$okResp){
+            die('Error insertando respuestas: '.mysqli_error($link));
+        }
+    }
+ 
+desconectarBD($link);
 
-<?php
- echo alertaBootstrap("Te contamos sobre tu respuesta");
+// Determinar especialidad elegida
+        $elegido="";
+        if ($contadorAgro > $contadorInfo && $contadorAgro > $contadorEco){
+            $elegido="tu interés en el área de Bachiller en Bioagroindustrias";}
+        elseif ($contadorInfo >$contadorAgro && $contadorInfo > $contadorEco){
+            $elegido="tu interés en el área de Técnico en Informática Profesional y Personal";}
+        elseif ($contadorEco> $contadorAgro && $contadorEco > $contadorInfo){
+            $elegido="tu interés en el área de Técnico en Economia y Administración";
+        }else{
+            $elegido="tu interés en dos áreas de preferencias por igual. Sugerimos visiten las páginas de la especialidad.";
+        }
+
 ?>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orientatec</title>
+    <?php linksBootstrapHeader(); ?>
+</head>
 
-<p>Los datos ingresados son:</p>
-<ul>
-<li>Usuario: <b>  <?php echo $usuario?> </b></li>
 
-<li>respuesta 1: <b> <?php echo $rp1?> </b></li>
-<li>respuesta 2: <b> <?php echo $rp2?> </b></li>
+<body>
+    <div class="container-fluid">
 
-<li>Cantidad de Agro: <b> <?php echo $contadorAgro?> </b></li>
-<li>Cantidad de Info: <b> <?php echo $contadorInfo?> </b></li>
-<li>Cantidad de Eco: <b> <?php echo $contadorEco?> </b></li>
+  <?php
+  menuNavbar("orientacion");
+  // menu();
+  ?>
 
-</ul>
+<div class="container-fluid">
+<h1>Muchas Gracias <?php echo htmlspecialchars($usuario); ?>!</h1> 
 
-<canvas id="miGrafico"></canvas>
 
-  <script>
-    // Obtenemos el contexto del canvas
-    const ctx = document.getElementById('miGrafico');
 
-    // Creamos el gráfico tipo "doughnut"
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Agro', 'Informática', 'Economía'],
-        datasets: [{
-          label: 'Cantidad de proyectos',
-          data: [<?php echo $contadorAgro?>, <?php echo $contadorInfo?>, <?php echo $contadorEco?>], // valores de ejemplo
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.7)',  // verde-agua (Agro)
-            'rgba(54, 162, 235, 0.7)',  // azul (Informática)
-            'rgba(255, 206, 86, 0.7)'   // amarillo (Economía)
-          ],
-          borderColor: [
-            'rgba(75, 192, 192, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)'
-          ],
-          borderWidth: 1
-        }]
+<div class="alert alert-success mb-5" role="alert">
+        <h4 class="alert-heading">¡Registramos tu respuesta!</h4>
+        <p>Muchas gracias por participar de Orientatec.</p>
+        <hr>
+        <p class="mb-0">Queremos agradecerte por tu compromiso y dedicación a lo largo de este proceso. A través de tu participación y desempeño, hemos podido ver con claridad tu entusiasmo,<span class="fw-bold"> <?= $elegido ?></span>.</p>
+    </div>
+
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">Resultado de tu evaluación</h5>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="d-flex justify-content-center flex-wrap gap-3">
+                    <div class="d-flex align-items-center">
+                        <span style="display: inline-block; background-color: rgba(255, 206, 86, 0.7); width: 25px; height: 25px; border: 3px solid rgba(255, 206, 86, 1); border-radius: 4px; margin-right: 8px;"></span>
+                        <span>Bachiller en Economía</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span style="display: inline-block; background-color: rgba(54, 162, 235, 0.7); width: 25px; height: 25px; border: 3px solid rgba(54, 162, 235, 1); border-radius: 4px; margin-right: 8px;"></span>
+                        <span>Informática</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span style="display: inline-block; background-color: rgba(75, 192, 192, 0.7); width: 25px; height: 25px; border: 3px solid rgba(75, 192, 192, 1); border-radius: 4px; margin-right: 8px;"></span>
+                        <span>Agronomía</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Bachiller en Economía', 'Informática', 'Agronomía'],
+      datasets: [{
+        label: 'Puntos obtenidos',
+        data: [<?php echo $contadorEco ?>, <?php echo $contadorInfo ?>, <?php echo $contadorAgro ?>],
+        backgroundColor: [
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(75, 192, 192, 0.7)'
+        ],
+        borderColor: [
+          'rgba(255, 206, 86, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          padding: 12,
+          titleFont: {
+            size: 14
+          },
+          bodyFont: {
+            size: 13
+          }
+        }
       },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'bottom'
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
           },
           title: {
             display: true,
-            text: 'Proporción de tus respuestas sobre las áreas temáticas'
+            text: 'Cantidad de respuestas'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Especialidades'
           }
         }
       }
-    });
-  </script>
- 
+    }
+  });
+</script>
 
-<a href="preguntas.php">Ir al formulario de preguntas</a>
+   
+    
+
 
 <br>
 
-<?php piePagina() ?>
+<?php piePaginaBootstrap(); ?>
 
 </div>
 </body>
