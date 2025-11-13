@@ -126,7 +126,6 @@ Con el pasar de los años, y con el crecimiento de la población, surgió la het
  </div>
 
 <!-- ✅ JS de Bootstrap y FullCalendar -->
-<?php linksBootstrapLocalFooter(); ?>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
 <script>
