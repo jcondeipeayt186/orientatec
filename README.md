@@ -19,6 +19,7 @@ Este proyecto integra conocimientos y competencias de los siguientes espacios cu
 El proyecto está desarrollado utilizando las siguientes tecnologías:
 
 ### Frontend
+
 - **HTML5** - Estructura y semántica
 - **CSS3** - Estilos y diseño responsive
 - **JavaScript** - Interactividad y lógica del cliente
@@ -28,15 +29,18 @@ El proyecto está desarrollado utilizando las siguientes tecnologías:
 - **WordCloud2.js** - Generación de nubes de palabras
 
 ### Backend
+
 - **PHP** - Lenguaje de programación del servidor
 - **MySQL** - Base de datos relacional
 
 ### Herramientas de Desarrollo
+
 - **XAMPP Server** - Servidor web Apache con PHP y MySQL (desarrollo local)
 - **Visual Studio Code** - Editor de código
 - **phpMyAdmin** - Cliente gráfico para administración de MySQL
 
 ### Hosting y Despliegue
+
 - **InfinityFree** - Hosting gratuito para producción
 - **URL de la aplicación**: [https://shorturl.do/orientatec](https://shorturl.do/orientatec)
 
@@ -73,7 +77,6 @@ El proyecto está desarrollado utilizando las siguientes tecnologías:
 ### Base de Datos
 
 1. **Crear la base de datos**: Ejecuta el script SQL ubicado en `bd/script.sql` desde phpMyAdmin o desde la línea de comandos de MySQL.
-
 2. **Configurar conexión**: Edita el archivo `librerias/config.php` y actualiza las siguientes constantes según tu configuración:
 
 ```php
@@ -104,11 +107,13 @@ define('RECURSOS_MODO', 'local');  // 'local' o 'online'
 ## 🚀 Funcionalidades
 
 ### Para Estudiantes
+
 - **Formulario de Orientación Vocacional**: Cuestionario interactivo con 13 preguntas que evalúan preferencias
 - **Resultados Personalizados**: Visualización de resultados con gráficos y recomendaciones
 - **Información de Especialidades**: Páginas informativas sobre cada orientación disponible
 
 ### Para Administradores
+
 - **Historial de Respuestas**: Visualización de todas las respuestas recibidas
 - **Estadísticas Generales**: Gráficos y métricas sobre las preferencias de los estudiantes
 - **Nube de Participantes**: Visualización de todos los participantes mediante nube de palabras
@@ -120,6 +125,7 @@ define('RECURSOS_MODO', 'local');  // 'local' o 'online'
 La base de datos contiene una tabla principal:
 
 **`respuestas`**
+
 - `idrespuestas` (BIGINT, AUTO_INCREMENT, PRIMARY KEY)
 - `opcion_elegida` (VARCHAR) - Especialidad elegida: 'agro', 'info', 'eco'
 - `usuario` (VARCHAR) - Nombre del estudiante que respondió
@@ -127,6 +133,7 @@ La base de datos contiene una tabla principal:
 ### Script de Creación
 
 El script de creación de la base de datos se encuentra en `bd/script.sql` e incluye:
+
 - Creación de la base de datos
 - Creación de la tabla `respuestas`
 - Datos de ejemplo para pruebas
@@ -156,6 +163,23 @@ Proyecto desarrollado por estudiantes de **6to año C - Especialidad en Informá
 ## 🚀 Futuras Extensiones
 
 El proyecto actualmente se encuentra en una versión inicial con funcionalidades básicas. Se planean las siguientes mejoras y extensiones:
+
+### Propuesta de estudiantes:
+
+* Página de producciones agropecuarias con venta de ellas
+* Saber cuantos chicos hay en cada curso
+* Publicaciones (entrevistas mediante videos, audios, textos acompañados de fotos, ... simil post de un blog) vinculada a las especialidades
+* Requisitos a presentar para el ingreso y el reglamento institucional (acuerdo de convivencia escolar)
+* Página sobre eventos culturales
+* Ampliar las páginas de las especialidades con Plan de Estudio
+* Ampliar la página nosotros con el staff docente
+* Gestión de usuarios y funcionalidad cuaderno de comunicación
+* Gestión de dominio edu.ar (escuelacastagnari.edu.ar o ipeatym186.edu.ar o casta186.edu.ar)
+* Gestion de Hosting con convenio de la Universidad
+
+### Página de Novedades
+
+### Web Responsive
 
 ### Ampliación de Base de Datos y Funcionalidades CRUD
 
@@ -194,6 +218,7 @@ Estas extensiones convertirán a Orientatec en una plataforma integral para la g
 ## 📞 Contacto
 
 **I.P.E.A.T.y M. N° 186 "CAPITAN LUIS DARIO JOSE CASTAGNARI"**
+
 - 📧 Email: ipeayt186capitancastagnari@gmail.com
 - 📱 Teléfono: 3584978840
 - 📷 Instagram: [@ipeatym186](https://instagram.com/ipeatym186)
@@ -201,4 +226,3 @@ Estas extensiones convertirán a Orientatec en una plataforma integral para la g
 ---
 
 *Proyecto desarrollado con fines educativos - 2025*
-

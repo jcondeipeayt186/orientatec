@@ -74,7 +74,7 @@ include 'librerias/funcionesHTML.php';
     <br>
    
     <div class="row">
-      <div class="col-8 mr-2">
+      <div class="col-md-8 mr-2">
        
       <p class="lead">El establecimiento I.P.E.A.Y.T. Nº 186 “Capitán Luis Darío José Castagnari” está ubicado en la localidad de Las Higueras, al sur de la provincia de Córdoba, distante a 7 km con de la ciudad de Río Cuarto.
 Se sitúa en una zona urbano-rural a ocho cuadras de la plaza central, a dos kilómetros del Área Material Río Cuarto y a dos kilómetros de la Universidad Nacional de Río Cuarto.
@@ -115,11 +115,12 @@ Con el pasar de los años, y con el crecimiento de la población, surgió la het
   </div>
         </div>            
 
-      <div class="col-4">
+      <div class="col-md-4">
 
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d835.5994403103864!2d-64.29250130717956!3d-33.09862524328969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95cdffb30cb1a365%3A0xf6ab5e324290a73e!2sEscuela%20Capitan%20Castagnari!5e0!3m2!1ses-419!2sar!4v1760988914962!5m2!1ses-419!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- width="400" height="300" -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d835.5994403103864!2d-64.29250130717956!3d-33.09862524328969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95cdffb30cb1a365%3A0xf6ab5e324290a73e!2sEscuela%20Capitan%20Castagnari!5e0!3m2!1ses-419!2sar!4v1760988914962!5m2!1ses-419!2sar" width="100%" height="300px"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <!-- Calendario -->
-<div id="calendario-container" style="width: 300px; height: 300px; margin: 10px auto;">
+      <div id="calendario-container" style=" width: 300px; height: 300px; margin: 10px auto;"> <!-- width: 300px; height: 300px; --> 
           <div id="calendar"></div>
         </div>
       </div>
