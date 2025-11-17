@@ -56,7 +56,7 @@ desconectarBD($link);
         elseif ($contadorInfo >$contadorAgro && $contadorInfo > $contadorEco){
             $elegido="tu interés en el área de Técnico en Informática Profesional y Personal";}
         elseif ($contadorEco> $contadorAgro && $contadorEco > $contadorInfo){
-            $elegido="tu interés en el área de Técnico en Economia y Administración";
+            $elegido="tu interés en el área de Bachiller en Economía y Administración";
         }else{
             $elegido="tu interés en dos áreas de preferencias por igual. Sugerimos visiten las páginas de la especialidad.";
         }
@@ -105,7 +105,7 @@ desconectarBD($link);
                 <div class="d-flex justify-content-center flex-wrap gap-3">
                     <div class="d-flex align-items-center">
                         <span style="display: inline-block; background-color: rgba(255, 206, 86, 0.7); width: 25px; height: 25px; border: 3px solid rgba(255, 206, 86, 1); border-radius: 4px; margin-right: 8px;"></span>
-                        <span>Bachiller en Economía</span>
+                        <span>Economía</span>
                     </div>
                     <div class="d-flex align-items-center">
                         <span style="display: inline-block; background-color: rgba(54, 162, 235, 0.7); width: 25px; height: 25px; border: 3px solid rgba(54, 162, 235, 1); border-radius: 4px; margin-right: 8px;"></span>
@@ -113,7 +113,7 @@ desconectarBD($link);
                     </div>
                     <div class="d-flex align-items-center">
                         <span style="display: inline-block; background-color: rgba(75, 192, 192, 0.7); width: 25px; height: 25px; border: 3px solid rgba(75, 192, 192, 1); border-radius: 4px; margin-right: 8px;"></span>
-                        <span>Agronomía</span>
+                        <span>Bioagroindustria</span>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@ desconectarBD($link);
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Bachiller en Economía', 'Informática', 'Agronomía'],
+      labels: ['Economía', 'Informática', 'Bioagroindustria'],
       datasets: [{
         label: 'Puntos obtenidos',
         data: [<?php echo $contadorEco ?>, <?php echo $contadorInfo ?>, <?php echo $contadorAgro ?>],

@@ -113,21 +113,21 @@ desconectarBD($link);
             <h5 class="card-title">Detalle</h5> <!-- Título detalle -->
             <ul class="list-group"> <!-- Lista resumen -->
               <li class="list-group-item d-flex justify-content-between align-items-center"> <!-- Item agro -->
-                Agro <span class="badge bg-success rounded-pill"><?php echo $agro; ?> (<?php echo $pAgro; ?>%)</span> <!-- Valor agro -->
+                Bioagroindustrias <span class="badge bg-success rounded-pill"><?php echo $agro; ?> (<?php echo $pAgro; ?>%)</span> <!-- Valor agro -->
               </li> <!-- Fin item -->
               <li class="list-group-item d-flex justify-content-between align-items-center"> <!-- Item info -->
                 Informática <span class="badge bg-primary rounded-pill"><?php echo $info; ?> (<?php echo $pInfo; ?>%)</span> <!-- Valor info -->
               </li> <!-- Fin item -->
               <li class="list-group-item d-flex justify-content-between align-items-center"> <!-- Item eco -->
-                Económicas <span class="badge bg-warning text-dark rounded-pill"><?php echo $eco; ?> (<?php echo $pEco; ?>%)</span> <!-- Valor eco -->
+                Económia y Administración <span class="badge bg-warning text-dark rounded-pill"><?php echo $eco; ?> (<?php echo $pEco; ?>%)</span> <!-- Valor eco -->
               </li> <!-- Fin item -->
             </ul> <!-- Fin lista -->
           </div> <!-- Fin cuerpo -->
         </div> <!-- Fin tarjeta -->
         <?php 
         if ( $pInfo > $pAgro and $pInfo > $pEco) { $Masvotado= "preferencias por la especialidad de Informática"; } 
-        else { if ($pAgro > $pInfo and $pAgro > $pEco ) { $Masvotado= "preferencias por la especialidad de Agronomía"; } 
-        else {if ($pEco > $pAgro and $pEco > $pInfo ) { $Masvotado= "preferencias por la especialidad de Economia"; } 
+        else { if ($pAgro > $pInfo and $pAgro > $pEco ) { $Masvotado= "preferencias por la especialidad de Bioagroindustrias"; } 
+        else {if ($pEco > $pAgro and $pEco > $pInfo ) { $Masvotado= "preferencias por la especialidad de Economía y Administración"; } 
         else { $Masvotado="preferencias por algunas especialidades por igual. Sugerimos visiten las páginas de la especialidad." ;}
          } } ?></p>
         <div class="card mt-5"> <!-- Tarjeta -->
@@ -191,7 +191,7 @@ desconectarBD($link);
     new Chart(ctx, { // Crea gráfico
       type: 'doughnut', // Tipo donut
       data: { // Datos
-        labels: ['Agro', 'Informática', 'Económicas'], // Etiquetas
+        labels: ['Bioagroindustrias', 'Informática', 'Economía'], // Etiquetas
         datasets: [{ // Dataset principal
           data: [<?php echo $pAgro; ?>, <?php echo $pInfo; ?>, <?php echo $pEco; ?>], // Valores porcentuales
           backgroundColor: [ // Colores de fondo

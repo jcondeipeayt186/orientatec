@@ -20,7 +20,7 @@ include 'librerias/funcionesHTML.php';
   
   ?>
     <div class="clearfix">
-    <h1  class= text-center   style= "border:2px solid #D7E8BC;color:#6F8D6A;"     > Bachiller en economia  </h1>
+    <h1  class= text-center   style= "border:2px solid #D7E8BC;color:#6F8D6A;"> Bachiller en Economía y Administración </h1>
 <br>
     <h5  style=   "border:2px solid #D7E8BC;color:#6F8D6A;" >  ¿De que trata la orientacion?</h5>
   
