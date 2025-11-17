@@ -79,7 +79,7 @@ include 'librerias/funcionesHTML.php';
       <p class="h5">El establecimiento I.P.E.A.Y.T. Nº 186 “Capitán Luis Darío José Castagnari” está ubicado en la localidad de Las Higueras, al sur de la provincia de Córdoba, distante a 7 km con de la ciudad de Río Cuarto.
 Se sitúa en una zona urbano-rural a ocho cuadras de la plaza central, a dos kilómetros del Área Material Río Cuarto y a dos kilómetros de la Universidad Nacional de Río Cuarto.
 Debido al funcionamiento del Taller Regional Río Cuarto (hoy Área Material Río Cuarto) se instalaron una gran cantidad de familias en el pueblo. Se propició la formación técnica de jóvenes aprendices, el propósito de aplicar lo aprendido en dicho lugar.
-A posterior comenzó a funcionar dentro de dicha estructura la Escuela Técnica E.N.E.T. Nº 1, hoy I.P.E.M. Nº 258 “Mayor Ing. Francisco de Arteaga”.
+A posterior comenzó a funcionar dentro de dicha estructura la Escuela Técnica E.N.E.T. Nº 1.
 Con el pasar de los años, y con el crecimiento de la población, surgió la heterogeneidad en las inquietudes y decisiones, para aquellos jóvenes que no deseaban continuar sus estudios en formación técnica. De esta manera surgió la necesidad de otro establecimiento de nivel medio, para evitar el traslado de los jóvenes de la localidad a la ciudad. Así un grupo de padres y vecinos iniciaron las gestiones para llevar a cabo el proyecto. 
 </p>
 
